@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pathfinding-visualizer"
+version = "0.1.0"
+description = "Interactive pygame pathfinding and maze-generation visualizer."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pygame>=2.5,<3",
+]
+
+[project.scripts]
+pathfinding-visualizer = "pathfinding_visualizer.app:main"
+
+[tool.setuptools]
+packages = ["pathfinding_visualizer"]

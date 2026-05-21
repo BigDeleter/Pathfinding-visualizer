@@ -2,6 +2,8 @@
 
 English | [中文](#中文说明)
 
+![Application Screenshot](assets/images/app-screenshot.jpg)
+
 An interactive `pygame` desktop visualizer for grid-based path planning and maze generation. The map defaults to `100 x 100`, and users can resize it at runtime anywhere from `2 x 2` to `500 x 500`. Users can place the start point, goal point, and obstacles, choose a maze algorithm, generate a maze, then watch different pathfinding algorithms explore the grid and build the final path in real time.
 
 ## Features
@@ -38,6 +40,12 @@ python -m pip install -r requirements.txt
 
 ```bash
 python main.py
+```
+
+Or run the packaged module directly:
+
+```bash
+python -m pathfinding_visualizer
 ```
 
 ## Controls
@@ -131,14 +139,37 @@ Notes for the current implementation:
 - The current start and goal cells are preserved
 - If needed, the generator opens a minimal connection near the preserved start and goal so pathfinding can still be demonstrated afterward
 
-## Project Files
+## Project Layout
 
-- [main.py](main.py): application entry point, UI, interaction logic, and pathfinding algorithms
-- [requirements.txt](requirements.txt): project dependency list
+```text
+.
+|-- assets/
+|   `-- images/
+|       `-- app-screenshot.jpg
+|-- pathfinding_visualizer/
+|   |-- __init__.py
+|   |-- __main__.py
+|   |-- app.py
+|   |-- constants.py
+|   `-- models.py
+|-- main.py
+|-- pyproject.toml
+|-- README.md
+`-- requirements.txt
+```
+
+- [main.py](main.py): thin compatibility entry point for `python main.py`
+- [pathfinding_visualizer/app.py](pathfinding_visualizer/app.py): desktop app implementation and runtime logic
+- [pathfinding_visualizer/constants.py](pathfinding_visualizer/constants.py): centralized UI, layout, and rendering constants
+- [pathfinding_visualizer/models.py](pathfinding_visualizer/models.py): shared dataclasses and type aliases
+- [pathfinding_visualizer/__main__.py](pathfinding_visualizer/__main__.py): module entry point for `python -m pathfinding_visualizer`
+- [pyproject.toml](pyproject.toml): package metadata and console script definition
+- [assets/images/app-screenshot.jpg](assets/images/app-screenshot.jpg): repository screenshot used in the README
+- [requirements.txt](requirements.txt): dependency list for lightweight installs
 
 ## Notes
 
-- The current implementation is intentionally kept in a single Python file for easier demonstration and sharing.
+- The repository now uses a small package layout so the root stays focused on entrypoints, metadata, and documentation.
 - The visible grid is scaled to fit the window, so very large maps remain usable without requiring a massive desktop resolution.
 
 ---
@@ -181,6 +212,12 @@ python -m pip install -r requirements.txt
 
 ```bash
 python main.py
+```
+
+或者直接按模块运行：
+
+```bash
+python -m pathfinding_visualizer
 ```
 
 ### 快捷键
@@ -237,5 +274,32 @@ python main.py
 
 ### 说明
 
-- 当前项目使用单文件结构，便于演示、运行和上传。
+- 当前项目已整理为更清晰的包结构，根目录主要保留入口、元数据和文档文件。
 - 当窗口高度小于完整网格时，程序会安全裁剪可见区域，而不会报错退出。
+
+### 项目结构
+
+```text
+.
+|-- assets/
+|   `-- images/
+|       `-- app-screenshot.jpg
+|-- pathfinding_visualizer/
+|   |-- __init__.py
+|   |-- __main__.py
+|   |-- app.py
+|   |-- constants.py
+|   `-- models.py
+|-- main.py
+|-- pyproject.toml
+|-- README.md
+`-- requirements.txt
+```
+
+- [main.py](main.py)：兼容 `python main.py` 的轻量入口
+- [pathfinding_visualizer/app.py](pathfinding_visualizer/app.py)：程序主体、界面逻辑与算法实现
+- [pathfinding_visualizer/constants.py](pathfinding_visualizer/constants.py)：集中管理尺寸、颜色与界面常量
+- [pathfinding_visualizer/models.py](pathfinding_visualizer/models.py)：共享数据结构与类型定义
+- [pathfinding_visualizer/__main__.py](pathfinding_visualizer/__main__.py)：支持 `python -m pathfinding_visualizer`
+- [pyproject.toml](pyproject.toml)：项目元数据与命令行入口配置
+- [assets/images/app-screenshot.jpg](assets/images/app-screenshot.jpg)：README 中使用的程序截图
