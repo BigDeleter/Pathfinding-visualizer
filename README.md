@@ -4,11 +4,11 @@ English | [中文](#中文说明)
 
 ![Application Screenshot](assets/images/app-screenshot.jpg)
 
-An interactive `pygame` desktop visualizer for grid-based path planning and maze generation. The map defaults to `100 x 100`, and users can resize it at runtime anywhere from `2 x 2` to `500 x 500`. Users can place the start point, goal point, and obstacles, choose a maze algorithm, generate a maze, then watch different pathfinding algorithms explore the grid and build the final path in real time.
+An interactive `pygame` desktop visualizer for grid-based path planning and maze generation. The map defaults to `40 x 40`, and users can resize it at runtime anywhere from `2 x 2` to `500 x 500`. Users can place the start point, goal point, and obstacles, choose a maze algorithm, generate a maze, then watch different pathfinding algorithms explore the grid and build the final path in real time.
 
 ## Features
 
-- Runtime-adjustable grid size, default `100 x 100`, clamp range `2 x 2` to `500 x 500`
+- Runtime-adjustable grid size, default `40 x 40`, clamp range `2 x 2` to `500 x 500`
 - Interactive editing for start, goal, obstacles, and erasing cells
 - Dynamic visualization of:
   - A*
@@ -19,6 +19,9 @@ An interactive `pygame` desktop visualizer for grid-based path planning and maze
 - Animated maze generation with:
   - Recursive Division
   - DFS Backtracker
+- Maze gameplay mode with keyboard and mouse drag controls, move counting, and live timer display
+- Gameplay success popup with `Play Again` and safe close behavior
+- In-app grid size modal with a linked square-size slider plus advanced width and height controls
 - Automatic scaling so large maps still fit inside the visible grid area
 - Real-time display of explored nodes, current node, open set, closed set, and final path
 - Adjustable animation speed
@@ -77,22 +80,40 @@ python -m pathfinding_visualizer
 - `R`: generate a maze
 - `T`: switch maze algorithm
 - `L`: change the grid size
+- `P`: enter or exit gameplay mode
+- `N`: restart the current gameplay run
 - `Space`: pause or resume
 - `C`: clear current path
 - `M`: clear the map
-- `Esc`: interrupt the current search
+- `Esc`: interrupt the current search or exit gameplay mode
 
 ### Maze Controls
 
 - `Maze`: generate a maze using the currently selected maze algorithm
 - `Maze Type`: switch between Recursive Division and DFS Backtracker
 - `Grid Size`: open an input dialog and resize the map
+- `Play`: enter or exit keyboard gameplay mode
+
+### Gameplay Mode
+
+- Uses the current map if it already has a valid start point, goal point, and reachable path
+- Automatically generates a fresh maze when the current map is not ready for gameplay
+- Movement: arrow keys, `WASD`, or left mouse drag across the grid
+- Restart the current run with `N`
+- Exit gameplay mode with `P` or `Esc`
+- Reaching the goal opens a success popup
+- `Play Again` generates a fresh maze and starts a new gameplay round
+- Closing the success popup leaves the current solved map unchanged
+- Tracks moves and elapsed time; this mode currently has no failure condition
 
 ### Grid Size Input
 
-- The dialog provides two separate input fields: one for width and one for height
+- The app now opens an in-window modal instead of a separate system dialog
+- A linked slider changes width and height together for quick square-grid resizing
+- Advanced controls still allow width and height to be adjusted independently
 - Each dimension is clamped independently to the nearest value in the range `2..500`
-- Changing the grid size clears the current start point, goal point, obstacles, and visualization state
+- Closing or cancelling the modal keeps the current map unchanged
+- Applying a new size clears the current start point, goal point, obstacles, and visualization state
 
 ## Path Planning Rules
 
@@ -176,11 +197,11 @@ Notes for the current implementation:
 
 ## 中文说明
 
-这是一个基于 `pygame` 的交互式桌面路径规划与迷宫生成演示程序。地图默认是 `100 x 100` 网格，并且支持在运行时修改到 `2 x 2` 到 `500 x 500` 的范围。用户可以手动设置起点、终点和障碍物，也可以选择迷宫算法后自动生成迷宫，并动态查看不同路径规划算法的搜索过程与最终路径。
+这是一个基于 `pygame` 的交互式桌面路径规划与迷宫生成演示程序。地图默认是 `40 x 40` 网格，并且支持在运行时修改到 `2 x 2` 到 `500 x 500` 的范围。用户可以手动设置起点、终点和障碍物，也可以选择迷宫算法后自动生成迷宫，并动态查看不同路径规划算法的搜索过程与最终路径。
 
 ### 功能特点
 
-- 支持运行时修改地图尺寸，默认 `100 x 100`，范围自动夹紧到 `2 x 2` 到 `500 x 500`
+- 支持运行时修改地图尺寸，默认 `40 x 40`，范围自动夹紧到 `2 x 2` 到 `500 x 500`
 - 支持交互设置起点、终点、障碍物和擦除格子
 - 支持以下算法的动态演示：
   - A*
@@ -191,6 +212,9 @@ Notes for the current implementation:
 - 支持以下迷宫生成动画：
   - `Recursive Division`
   - `DFS Backtracker`
+- 支持键盘与鼠标拖动控制的走迷宫游戏模式，带步数与计时显示
+- 支持通关成功弹窗，可再来一局或直接关闭
+- 支持应用内尺寸设置面板，包含同步滑杆和高级宽高控制
 - 大地图会自动缩放到可视区域内显示
 - 支持显示开放集、关闭集、当前扩展节点和最终路径
 - 支持调节动画速度
@@ -235,16 +259,39 @@ python -m pathfinding_visualizer
 - `R`：生成迷宫
 - `T`：切换迷宫算法
 - `L`：修改地图尺寸
+- `P`：进入或退出游戏模式
+- `N`：重新开始当前游戏
 - `Space`：暂停或继续
 - `C`：清除当前路径
 - `M`：清空地图
-- `Esc`：中断当前搜索
+- `Esc`：中断当前搜索或退出游戏模式
 
 ### 迷宫相关操作
 
 - `Maze` 按钮：按当前选中的迷宫算法生成迷宫
 - `Maze Type` 按钮：在 `Recursive Division` 和 `DFS Backtracker` 之间切换
 - `Grid Size` 按钮：打开输入框并修改地图尺寸
+- `Play` 按钮：进入或退出键盘走迷宫模式
+
+### 游戏模式
+
+- 如果当前地图已经有合法的起点、终点和可达路径，就直接用当前地图开始
+- 如果当前地图不满足可玩条件，程序会自动生成一局新迷宫
+- 移动方式：方向键、`WASD`，或鼠标左键在网格上拖动
+- `N`：重新开始当前这一局
+- `P` 或 `Esc`：退出游戏模式
+- 到达终点后会弹出成功窗口
+- `Play Again` 会重新生成一张新迷宫并开始下一局
+- 关闭成功窗口时不会修改当前这局已经完成的地图状态
+- 会显示步数和计时；当前版本还没有失败判定
+
+### 尺寸设置
+
+- 现在使用程序内的现代化弹窗，而不是系统输入框
+- 主滑杆会同步调整宽和高，适合快速切换方形地图
+- 高级设置仍然可以分别调整宽度和高度
+- 关闭或取消时不会修改当前地图
+- 确认应用后会重置地图并按新尺寸重新开始
 
 ### 地图尺寸输入
 

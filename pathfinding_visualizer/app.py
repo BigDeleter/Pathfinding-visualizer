@@ -15,53 +15,151 @@ except ImportError as exc:
         "pygame is required. Install dependencies with: pip install -r requirements.txt"
     ) from exc
 
-from .constants import (
-    ALGORITHM_BUTTON_ROWS,
-    ALGORITHM_HEADER_Y,
-    BACKGROUND_COLOR,
-    BUTTON_ACTIVE_COLOR,
-    BUTTON_COLOR,
-    BUTTON_HOVER_COLOR,
-    BUTTON_TEXT_COLOR,
-    CLOSED_COLOR,
-    CONTROL_BUTTON_ROWS,
-    CONTROLS_HEADER_Y,
-    CURRENT_COLOR,
-    DEFAULT_GRID_HEIGHT,
-    DEFAULT_GRID_WIDTH,
-    EDIT_BUTTON_ROWS,
-    EDIT_HEADER_Y,
-    EMPTY_COLOR,
-    FPS,
-    GOAL_COLOR,
-    GRID_LINE_COLOR,
-    GRID_LINE_THRESHOLD,
-    GRID_PADDING,
-    MAX_GRID_DIMENSION,
-    MAZE_ALGORITHMS,
-    MIN_GRID_DIMENSION,
-    MOVE_DIAGONAL,
-    MOVE_STRAIGHT,
-    MUTED_TEXT_COLOR,
-    OBSTACLE_COLOR,
-    OPEN_COLOR,
-    PANEL_COLOR,
-    PANEL_SECTION_COLOR,
-    PANEL_WIDTH,
-    PATH_COLOR,
-    SPEED_BUTTON_Y,
-    SPEED_HEADER_Y,
-    START_COLOR,
-    TEXT_COLOR,
-    WINDOW_DEFAULT_HEIGHT,
-    WINDOW_DEFAULT_WIDTH,
-    WINDOW_FLAGS,
-    WINDOW_MIN_HEIGHT,
-    WINDOW_MIN_WIDTH,
-    WINDOW_SCREEN_MARGIN_X,
-    WINDOW_SCREEN_MARGIN_Y,
-)
-from .models import Button, Cell, MazeFrame, SearchFrame
+try:
+    from .constants import (
+        ALGORITHM_BUTTON_ROWS,
+        ALGORITHM_HEADER_Y,
+        BACKGROUND_COLOR,
+        BUTTON_ACTIVE_COLOR,
+        BUTTON_COLOR,
+        BUTTON_HOVER_COLOR,
+        BUTTON_TEXT_COLOR,
+        CLOSED_COLOR,
+        CONTROL_BUTTON_ROWS,
+        CONTROLS_HEADER_Y,
+        CURRENT_COLOR,
+        DEFAULT_GRID_HEIGHT,
+        DEFAULT_GRID_WIDTH,
+        EDIT_BUTTON_ROWS,
+        EDIT_HEADER_Y,
+        EMPTY_COLOR,
+        FPS,
+        GAMEPLAY_MOVE_INITIAL_DELAY_MS,
+        GAMEPLAY_MOVE_REPEAT_MS,
+        GOAL_COLOR,
+        GRID_LINE_COLOR,
+        GRID_LINE_THRESHOLD,
+        GRID_PADDING,
+        MAX_GRID_DIMENSION,
+        MAZE_ALGORITHMS,
+        MIN_GRID_DIMENSION,
+        MODAL_ACCENT_COLOR,
+        MODAL_BUTTON_HEIGHT,
+        MODAL_CARD_BORDER_COLOR,
+        MODAL_CARD_COLOR,
+        MODAL_CLOSE_COLOR,
+        MODAL_INPUT_ACTIVE_COLOR,
+        MODAL_INPUT_COLOR,
+        MODAL_MUTED_TEXT_COLOR,
+        MODAL_OVERLAY_COLOR,
+        MODAL_SUCCESS_COLOR,
+        MODAL_TEXT_COLOR,
+        MOVE_DIAGONAL,
+        MOVE_STRAIGHT,
+        MUTED_TEXT_COLOR,
+        OBSTACLE_COLOR,
+        OPEN_COLOR,
+        PANEL_COLOR,
+        PANEL_SECTION_COLOR,
+        PANEL_WIDTH,
+        PATH_COLOR,
+        PLAYER_COLOR,
+        SLIDER_THUMB_RADIUS,
+        SLIDER_TRACK_HEIGHT,
+        SPEED_BUTTON_Y,
+        SPEED_HEADER_Y,
+        START_COLOR,
+        SUCCESS_DIALOG_HEIGHT,
+        SUCCESS_DIALOG_WIDTH,
+        TEXT_COLOR,
+        WINDOW_DEFAULT_HEIGHT,
+        WINDOW_DEFAULT_WIDTH,
+        WINDOW_FLAGS,
+        WINDOW_MIN_HEIGHT,
+        WINDOW_MIN_WIDTH,
+        WINDOW_SCREEN_MARGIN_X,
+        WINDOW_SCREEN_MARGIN_Y,
+        GRID_DIALOG_ADVANCED_HEIGHT,
+        GRID_DIALOG_HEIGHT,
+        GRID_DIALOG_WIDTH,
+    )
+    from .models import Button, Cell, GameplayState, GridSizeDialogState, MazeFrame, ModalState, SearchFrame, SuccessDialogState
+except ImportError:
+    import sys
+    from pathlib import Path
+
+    module_dir = Path(__file__).resolve().parent
+    if str(module_dir) not in sys.path:
+        sys.path.insert(0, str(module_dir))
+
+    from constants import (
+        ALGORITHM_BUTTON_ROWS,
+        ALGORITHM_HEADER_Y,
+        BACKGROUND_COLOR,
+        BUTTON_ACTIVE_COLOR,
+        BUTTON_COLOR,
+        BUTTON_HOVER_COLOR,
+        BUTTON_TEXT_COLOR,
+        CLOSED_COLOR,
+        CONTROL_BUTTON_ROWS,
+        CONTROLS_HEADER_Y,
+        CURRENT_COLOR,
+        DEFAULT_GRID_HEIGHT,
+        DEFAULT_GRID_WIDTH,
+        EDIT_BUTTON_ROWS,
+        EDIT_HEADER_Y,
+        EMPTY_COLOR,
+        FPS,
+        GAMEPLAY_MOVE_INITIAL_DELAY_MS,
+        GAMEPLAY_MOVE_REPEAT_MS,
+        GOAL_COLOR,
+        GRID_LINE_COLOR,
+        GRID_LINE_THRESHOLD,
+        GRID_PADDING,
+        MAX_GRID_DIMENSION,
+        MAZE_ALGORITHMS,
+        MIN_GRID_DIMENSION,
+        MODAL_ACCENT_COLOR,
+        MODAL_BUTTON_HEIGHT,
+        MODAL_CARD_BORDER_COLOR,
+        MODAL_CARD_COLOR,
+        MODAL_CLOSE_COLOR,
+        MODAL_INPUT_ACTIVE_COLOR,
+        MODAL_INPUT_COLOR,
+        MODAL_MUTED_TEXT_COLOR,
+        MODAL_OVERLAY_COLOR,
+        MODAL_SUCCESS_COLOR,
+        MODAL_TEXT_COLOR,
+        MOVE_DIAGONAL,
+        MOVE_STRAIGHT,
+        MUTED_TEXT_COLOR,
+        OBSTACLE_COLOR,
+        OPEN_COLOR,
+        PANEL_COLOR,
+        PANEL_SECTION_COLOR,
+        PANEL_WIDTH,
+        PATH_COLOR,
+        PLAYER_COLOR,
+        SLIDER_THUMB_RADIUS,
+        SLIDER_TRACK_HEIGHT,
+        SPEED_BUTTON_Y,
+        SPEED_HEADER_Y,
+        START_COLOR,
+        SUCCESS_DIALOG_HEIGHT,
+        SUCCESS_DIALOG_WIDTH,
+        TEXT_COLOR,
+        WINDOW_DEFAULT_HEIGHT,
+        WINDOW_DEFAULT_WIDTH,
+        WINDOW_FLAGS,
+        WINDOW_MIN_HEIGHT,
+        WINDOW_MIN_WIDTH,
+        WINDOW_SCREEN_MARGIN_X,
+        WINDOW_SCREEN_MARGIN_Y,
+        GRID_DIALOG_ADVANCED_HEIGHT,
+        GRID_DIALOG_HEIGHT,
+        GRID_DIALOG_WIDTH,
+    )
+    from models import Button, Cell, GameplayState, GridSizeDialogState, MazeFrame, ModalState, SearchFrame, SuccessDialogState
 
 
 class PathfinderApp:
@@ -102,6 +200,11 @@ class PathfinderApp:
         self.maze_generator: Optional[Generator[MazeFrame, None, None]] = None
         self.search_paused = False
         self.status_message = "Place start, goal, and obstacles. Then press Run."
+        self.gameplay_state = GameplayState()
+        self.modal_state = ModalState()
+        self.gameplay_hold_direction: Optional[Cell] = None
+        self.gameplay_next_move_ticks = 0
+        self.gameplay_drag_cell: Optional[Cell] = None
 
         self.drag_button: Optional[int] = None
         self.last_drag_cell: Optional[Cell] = None
@@ -216,7 +319,8 @@ class PathfinderApp:
             Button("Clear Path", rect_3col(CONTROL_BUTTON_ROWS[1], 0), self.clear_search_state),
             Button("Clear Map", rect_3col(CONTROL_BUTTON_ROWS[1], 1), self.clear_map),
             Button("Maze Type", rect_3col(CONTROL_BUTTON_ROWS[1], 2), self.toggle_maze_algorithm),
-            Button("Grid Size", rect_full(CONTROL_BUTTON_ROWS[2]), self.prompt_grid_size),
+            Button("Grid Size", rect_2col(CONTROL_BUTTON_ROWS[2], 0), self.prompt_grid_size),
+            Button("Play", rect_2col(CONTROL_BUTTON_ROWS[2], 1), self.toggle_gameplay_mode, "gameplay", True),
             Button("Slow", rect_3col(SPEED_BUTTON_Y, 0), lambda: self.set_speed(1), "speed", 1),
             Button("Medium", rect_3col(SPEED_BUTTON_Y, 1), lambda: self.set_speed(4), "speed", 4),
             Button("Fast", rect_3col(SPEED_BUTTON_Y, 2), lambda: self.set_speed(16), "speed", 16),
@@ -287,86 +391,14 @@ class PathfinderApp:
         return int(normalized)
 
     def prompt_grid_size(self) -> None:
+        if self.is_gameplay_engaged():
+            self.status_message = "Exit gameplay mode before changing grid size."
+            return
         if self.search_generator is not None or self.maze_generator is not None:
             self.status_message = "Finish the active animation before changing grid size."
             return
 
-        try:
-            import tkinter as tk
-            from tkinter import simpledialog
-        except ImportError:
-            self.status_message = "Grid size prompt is unavailable in this environment."
-            return
-
-        class GridSizeDialog(simpledialog.Dialog):
-            def __init__(self, parent: tk.Misc, width_value: int, height_value: int) -> None:
-                self.width_value = str(width_value)
-                self.height_value = str(height_value)
-                self.result: Optional[tuple[str, str]] = None
-                super().__init__(parent, title="Grid Size")
-
-            def body(self, master: tk.Misc):
-                tk.Label(
-                    master,
-                    text=(
-                        f"Enter width and height separately.\n"
-                        f"Allowed range per dimension: {MIN_GRID_DIMENSION} to {MAX_GRID_DIMENSION}."
-                    ),
-                    justify="left",
-                    anchor="w",
-                ).grid(row=0, column=0, columnspan=2, padx=10, pady=(10, 8), sticky="w")
-
-                tk.Label(master, text="Width").grid(row=1, column=0, padx=(10, 6), pady=4, sticky="e")
-                tk.Label(master, text="Height").grid(row=2, column=0, padx=(10, 6), pady=4, sticky="e")
-
-                self.width_entry = tk.Entry(master, width=12)
-                self.height_entry = tk.Entry(master, width=12)
-                self.width_entry.grid(row=1, column=1, padx=(0, 10), pady=4, sticky="w")
-                self.height_entry.grid(row=2, column=1, padx=(0, 10), pady=(4, 10), sticky="w")
-
-                self.width_entry.insert(0, self.width_value)
-                self.height_entry.insert(0, self.height_value)
-                return self.width_entry
-
-            def apply(self) -> None:
-                self.result = (
-                    self.width_entry.get(),
-                    self.height_entry.get(),
-                )
-
-        root: Optional[tk.Tk] = None
-        try:
-            root = tk.Tk()
-            root.withdraw()
-            root.attributes("-topmost", True)
-            dialog = GridSizeDialog(
-                root,
-                self.grid_width,
-                self.grid_height,
-            )
-        except tk.TclError:
-            self.status_message = "Grid size prompt is unavailable in this environment."
-            return
-        finally:
-            if root is not None:
-                root.destroy()
-
-        if dialog.result is None:
-            self.status_message = "Grid size change cancelled."
-            return
-
-        width_text, height_text = dialog.result
-        width_value = self.parse_grid_dimension_text(width_text)
-        height_value = self.parse_grid_dimension_text(height_text)
-        if width_value is None or height_value is None:
-            self.status_message = "Invalid grid size. Enter width and height as whole numbers."
-            return
-
-        self.apply_grid_size(
-            width_value,
-            height_value,
-            requested=(width_value, height_value),
-        )
+        self.open_grid_size_dialog()
 
     def apply_grid_size(
         self,
@@ -391,6 +423,8 @@ class PathfinderApp:
         self.search_generator = None
         self.maze_generator = None
         self.search_paused = False
+        self.clear_gameplay_input_state()
+        self.gameplay_state = GameplayState()
         self.start_cell = None
         self.goal_cell = None
         self.obstacles.clear()
@@ -440,6 +474,8 @@ class PathfinderApp:
             self.invalidate_scaled_grid()
 
     def get_cell_color(self, cell: Cell) -> tuple[int, int, int]:
+        if cell == self.gameplay_state.player_cell:
+            return PLAYER_COLOR
         if cell == self.start_cell:
             return START_COLOR
         if cell == self.goal_cell:
@@ -510,6 +546,441 @@ class PathfinderApp:
         labels = {1: "slow", 4: "medium", 16: "fast"}
         self.status_message = f"Animation speed set to {labels.get(steps_per_frame, steps_per_frame)}."
 
+    def is_gameplay_engaged(self) -> bool:
+        return self.gameplay_state.active or self.gameplay_state.pending_generation
+
+    def has_active_modal(self) -> bool:
+        return self.modal_state.kind is not None
+
+    def dismiss_modal(self, status_message: Optional[str] = None) -> None:
+        self.modal_state = ModalState()
+        if status_message is not None:
+            self.status_message = status_message
+
+    def open_success_dialog(self) -> None:
+        self.modal_state = ModalState(
+            kind="success",
+            success=SuccessDialogState(
+                visible=True,
+                moves=self.gameplay_state.moves,
+                elapsed_seconds=self.gameplay_state.elapsed_seconds,
+            ),
+        )
+
+    def open_grid_size_dialog(self) -> None:
+        linked_size = self.grid_width if self.grid_width == self.grid_height else min(
+            self.grid_width,
+            self.grid_height,
+        )
+        linked_size, _ = self.clamp_grid_size(linked_size, linked_size)
+        self.modal_state = ModalState(
+            kind="grid_size",
+            grid_size=GridSizeDialogState(
+                visible=True,
+                slider_value=linked_size,
+                width_text=str(self.grid_width),
+                height_text=str(self.grid_height),
+                advanced_open=self.grid_width != self.grid_height,
+            ),
+        )
+        self.status_message = "Adjust the grid size and click Apply to confirm."
+
+    def close_grid_size_dialog(self) -> None:
+        self.dismiss_modal("Grid size change cancelled.")
+
+    def get_grid_dialog_dimensions(self) -> tuple[int, int]:
+        state = self.modal_state.grid_size
+        width_value = self.parse_grid_dimension_text(state.width_text)
+        height_value = self.parse_grid_dimension_text(state.height_text)
+        if width_value is None or height_value is None:
+            return self.clamp_grid_size(self.grid_width, self.grid_height)
+        return self.clamp_grid_size(width_value, height_value)
+
+    def set_grid_dialog_linked_size(self, value: int) -> None:
+        clamped_value, _ = self.clamp_grid_size(value, value)
+        self.modal_state.grid_size.slider_value = clamped_value
+        self.modal_state.grid_size.width_text = str(clamped_value)
+        self.modal_state.grid_size.height_text = str(clamped_value)
+
+    def adjust_grid_dialog_axis(self, axis: str, delta: int) -> None:
+        width, height = self.get_grid_dialog_dimensions()
+        if axis == "width":
+            width += delta
+        else:
+            height += delta
+
+        width, height = self.clamp_grid_size(width, height)
+        self.modal_state.grid_size.width_text = str(width)
+        self.modal_state.grid_size.height_text = str(height)
+        if width == height:
+            self.modal_state.grid_size.slider_value = width
+
+    def apply_grid_size_from_dialog(self) -> None:
+        requested_width = self.parse_grid_dimension_text(self.modal_state.grid_size.width_text)
+        requested_height = self.parse_grid_dimension_text(self.modal_state.grid_size.height_text)
+        width, height = self.get_grid_dialog_dimensions()
+        self.dismiss_modal()
+        self.apply_grid_size(
+            width,
+            height,
+            requested=(requested_width or width, requested_height or height),
+        )
+
+    def clear_gameplay_hold(self) -> None:
+        self.gameplay_hold_direction = None
+        self.gameplay_next_move_ticks = 0
+
+    def clear_gameplay_drag(self) -> None:
+        self.gameplay_drag_cell = None
+
+    def clear_gameplay_input_state(self) -> None:
+        self.clear_gameplay_hold()
+        self.clear_gameplay_drag()
+
+    def iter_gameplay_drag_cells(self, start_cell: Cell, end_cell: Cell) -> list[Cell]:
+        if start_cell == end_cell:
+            return []
+
+        x0, y0 = start_cell
+        x1, y1 = end_cell
+        dx = abs(x1 - x0)
+        dy = abs(y1 - y0)
+        step_x = 1 if x1 > x0 else -1 if x1 < x0 else 0
+        step_y = 1 if y1 > y0 else -1 if y1 < y0 else 0
+        error = dx - dy
+        traversed_cells: list[Cell] = []
+
+        while (x0, y0) != (x1, y1):
+            doubled_error = error * 2
+            next_x = x0
+            next_y = y0
+            if doubled_error > -dy:
+                error -= dy
+                next_x += step_x
+            if doubled_error < dx:
+                error += dx
+                next_y += step_y
+            x0, y0 = next_x, next_y
+            traversed_cells.append((x0, y0))
+
+        return traversed_cells
+
+    def advance_gameplay_drag(self, cell: Cell) -> None:
+        if (
+            self.gameplay_drag_cell is None
+            or self.gameplay_state.pending_generation
+            or not self.gameplay_state.active
+            or self.gameplay_state.player_cell is None
+            or self.gameplay_state.won
+        ):
+            return
+        if cell == self.gameplay_drag_cell:
+            return
+
+        traversed_cells = self.iter_gameplay_drag_cells(self.gameplay_drag_cell, cell)
+        self.gameplay_drag_cell = cell
+
+        for traversed_cell in traversed_cells:
+            player_cell = self.gameplay_state.player_cell
+            if player_cell is None or self.gameplay_state.won:
+                self.clear_gameplay_drag()
+                return
+
+            dx = traversed_cell[0] - player_cell[0]
+            dy = traversed_cell[1] - player_cell[1]
+            if max(abs(dx), abs(dy)) != 1:
+                continue
+
+            self.try_move_player(dx, dy)
+            if self.gameplay_state.won:
+                self.clear_gameplay_drag()
+                return
+
+    def get_gameplay_direction_for_key(self, key: int) -> Optional[Cell]:
+        if key in (pygame.K_UP, pygame.K_w):
+            return (0, -1)
+        if key in (pygame.K_DOWN, pygame.K_s):
+            return (0, 1)
+        if key in (pygame.K_LEFT, pygame.K_a):
+            return (-1, 0)
+        if key in (pygame.K_RIGHT, pygame.K_d):
+            return (1, 0)
+        return None
+
+    def is_gameplay_direction_pressed(self, direction: Cell, pressed_keys) -> bool:
+        if direction == (0, -1):
+            return bool(pressed_keys[pygame.K_UP] or pressed_keys[pygame.K_w])
+        if direction == (0, 1):
+            return bool(pressed_keys[pygame.K_DOWN] or pressed_keys[pygame.K_s])
+        if direction == (-1, 0):
+            return bool(pressed_keys[pygame.K_LEFT] or pressed_keys[pygame.K_a])
+        if direction == (1, 0):
+            return bool(pressed_keys[pygame.K_RIGHT] or pressed_keys[pygame.K_d])
+        return False
+
+    def handle_gameplay_direction_keydown(self, direction: Cell) -> None:
+        if self.gameplay_state.pending_generation:
+            self.try_move_player(*direction)
+            return
+        if not self.gameplay_state.active:
+            return
+
+        self.clear_gameplay_drag()
+        self.gameplay_hold_direction = direction
+        self.gameplay_next_move_ticks = pygame.time.get_ticks() + GAMEPLAY_MOVE_INITIAL_DELAY_MS
+        self.try_move_player(*direction)
+        if self.gameplay_state.won:
+            self.clear_gameplay_hold()
+
+    def advance_gameplay_hold(self) -> None:
+        if self.gameplay_hold_direction is None:
+            return
+
+        pressed_keys = pygame.key.get_pressed()
+        if not self.is_gameplay_direction_pressed(self.gameplay_hold_direction, pressed_keys):
+            self.clear_gameplay_hold()
+            return
+
+        now_ticks = pygame.time.get_ticks()
+        if now_ticks < self.gameplay_next_move_ticks:
+            return
+
+        self.try_move_player(*self.gameplay_hold_direction)
+        self.gameplay_next_move_ticks = now_ticks + GAMEPLAY_MOVE_REPEAT_MS
+        if self.gameplay_state.won:
+            self.clear_gameplay_hold()
+
+    def toggle_gameplay_mode(self) -> None:
+        if self.is_gameplay_engaged():
+            self.exit_gameplay_mode("Gameplay mode exited.")
+            return
+        self.start_gameplay_mode()
+
+    def start_gameplay_mode(self) -> None:
+        self.clear_gameplay_input_state()
+        self.clear_search_state(silent=True)
+        if self.can_use_current_map_for_gameplay():
+            self.activate_gameplay_level(auto_generated=False)
+            return
+
+        self.ensure_gameplay_start_goal()
+        self.gameplay_state = GameplayState(pending_generation=True)
+        self.start_maze_generation()
+        self.gameplay_state.pending_generation = True
+        self.status_message = f"Generating a {self.selected_maze_algorithm} maze for gameplay..."
+
+    def exit_gameplay_mode(self, message: str) -> None:
+        dirty_cells: set[Cell] = set()
+        if self.gameplay_state.player_cell is not None:
+            dirty_cells.add(self.gameplay_state.player_cell)
+        if self.gameplay_state.pending_generation:
+            self.clear_search_state(silent=True)
+        self.clear_gameplay_input_state()
+        self.modal_state = ModalState()
+        self.gameplay_state = GameplayState()
+        self.refresh_cells(dirty_cells)
+        self.status_message = message
+
+    def restart_gameplay(self) -> None:
+        if self.gameplay_state.pending_generation:
+            self.status_message = "Wait for the gameplay maze to finish generating."
+            return
+        if not self.gameplay_state.active or self.start_cell is None:
+            self.status_message = "Gameplay mode is not active."
+            return
+
+        dirty_cells = {self.start_cell}
+        if self.gameplay_state.player_cell is not None:
+            dirty_cells.add(self.gameplay_state.player_cell)
+
+        self.clear_gameplay_input_state()
+        self.gameplay_state.player_cell = self.start_cell
+        self.gameplay_state.moves = 0
+        self.gameplay_state.start_ticks = pygame.time.get_ticks()
+        self.gameplay_state.elapsed_seconds = 0.0
+        self.gameplay_state.won = False
+        self.refresh_cells(dirty_cells)
+        self.status_message = "Gameplay restarted. Reach the goal with arrows/WASD or left-drag."
+
+    def start_new_gameplay_round(self) -> None:
+        dirty_cells: set[Cell] = set()
+        if self.gameplay_state.player_cell is not None:
+            dirty_cells.add(self.gameplay_state.player_cell)
+        if self.start_cell is not None:
+            dirty_cells.add(self.start_cell)
+        if self.goal_cell is not None:
+            dirty_cells.add(self.goal_cell)
+
+        self.dismiss_modal()
+        self.clear_gameplay_input_state()
+        self.gameplay_state = GameplayState()
+        self.refresh_cells(dirty_cells)
+        self.clear_search_state(silent=True)
+        self.start_cell = None
+        self.goal_cell = None
+        self.ensure_gameplay_start_goal()
+        self.gameplay_state = GameplayState(pending_generation=True)
+        self.start_maze_generation()
+        self.gameplay_state.pending_generation = True
+        self.status_message = f"Generating a {self.selected_maze_algorithm} maze for gameplay..."
+
+    def advance_gameplay(self) -> None:
+        if not self.gameplay_state.active or self.gameplay_state.pending_generation:
+            return
+        if self.gameplay_state.won or self.gameplay_state.start_ticks <= 0:
+            return
+        self.update_gameplay_elapsed_time()
+        self.advance_gameplay_hold()
+
+    def update_gameplay_elapsed_time(self) -> None:
+        if not self.gameplay_state.active or self.gameplay_state.start_ticks <= 0:
+            return
+        self.gameplay_state.elapsed_seconds = (
+            pygame.time.get_ticks() - self.gameplay_state.start_ticks
+        ) / 1000.0
+
+    def can_use_current_map_for_gameplay(self) -> bool:
+        if self.start_cell is None or self.goal_cell is None:
+            return False
+        if self.start_cell == self.goal_cell:
+            return False
+        if self.start_cell in self.obstacles or self.goal_cell in self.obstacles:
+            return False
+        return self.has_walkable_path(self.start_cell, self.goal_cell)
+
+    def get_gameplay_axis_order(self, size: int, toward_end: bool) -> list[int]:
+        target = size - 1 if toward_end else 0
+        scored_indices: list[tuple[tuple[int, int, int, int], int]] = []
+
+        for index in range(size):
+            margin = min(index, size - 1 - index)
+            score = (
+                1 if margin >= 3 else 0,
+                -abs(index - target),
+                1 if index % 2 == 1 else 0,
+                margin,
+            )
+            scored_indices.append((score, index))
+
+        scored_indices.sort(reverse=True)
+        return [index for _, index in scored_indices]
+
+    def iter_gameplay_corner_candidates(
+        self,
+        toward_right: bool,
+        toward_bottom: bool,
+    ):
+        x_order = self.get_gameplay_axis_order(self.grid_width, toward_right)
+        y_order = self.get_gameplay_axis_order(self.grid_height, toward_bottom)
+
+        for y in y_order:
+            for x in x_order:
+                yield (x, y)
+
+    def get_default_gameplay_start_goal(self) -> tuple[Cell, Cell]:
+        start_cell = next(self.iter_gameplay_corner_candidates(False, False))
+
+        goal_cell = next(
+            (
+                cell
+                for cell in self.iter_gameplay_corner_candidates(True, True)
+                if cell != start_cell
+            ),
+            start_cell,
+        )
+        if goal_cell != start_cell:
+            return start_cell, goal_cell
+
+        for y in range(self.grid_height):
+            for x in range(self.grid_width):
+                fallback = (x, y)
+                if fallback != start_cell:
+                    return start_cell, fallback
+
+        return start_cell, start_cell
+
+    def ensure_gameplay_start_goal(self) -> None:
+        new_start, new_goal = self.get_default_gameplay_start_goal()
+
+        dirty_cells: set[Cell] = set()
+        if self.start_cell is not None:
+            dirty_cells.add(self.start_cell)
+        if self.goal_cell is not None:
+            dirty_cells.add(self.goal_cell)
+
+        self.start_cell = new_start
+        self.goal_cell = new_goal
+        self.obstacles.discard(self.start_cell)
+        self.obstacles.discard(self.goal_cell)
+        dirty_cells.update({self.start_cell, self.goal_cell})
+        self.refresh_cells(dirty_cells)
+
+    def activate_gameplay_level(self, auto_generated: bool) -> None:
+        if not self.can_use_current_map_for_gameplay() or self.start_cell is None:
+            self.exit_gameplay_mode("Unable to start gameplay: no valid path exists.")
+            return
+
+        dirty_cells: set[Cell] = set()
+        if self.gameplay_state.player_cell is not None:
+            dirty_cells.add(self.gameplay_state.player_cell)
+
+        self.gameplay_state = GameplayState(
+            active=True,
+            player_cell=self.start_cell,
+            start_ticks=pygame.time.get_ticks(),
+            used_generated_maze=auto_generated,
+        )
+        self.clear_gameplay_input_state()
+        dirty_cells.add(self.start_cell)
+        self.refresh_cells(dirty_cells)
+
+        source_label = "generated maze" if auto_generated else "current map"
+        self.status_message = (
+            f"Gameplay started on the {source_label}. "
+            "Use arrows/WASD or left-drag on the grid. Press N to restart, P or Esc to exit."
+        )
+
+    def try_move_player(self, dx: int, dy: int) -> None:
+        if self.gameplay_state.pending_generation:
+            self.status_message = "Wait for the gameplay maze to finish generating."
+            return
+        if not self.gameplay_state.active or self.gameplay_state.player_cell is None:
+            return
+        if self.gameplay_state.won:
+            self.status_message = "Goal already reached. Press N to restart or P to exit."
+            return
+
+        current_cell = self.gameplay_state.player_cell
+        target_cell = (current_cell[0] + dx, current_cell[1] + dy)
+        valid_neighbors = {neighbor for neighbor, _ in self.iter_neighbors(current_cell)}
+        if target_cell not in valid_neighbors:
+            self.status_message = "Blocked by a wall."
+            return
+
+        self.gameplay_state.player_cell = target_cell
+        self.gameplay_state.moves += 1
+        self.update_gameplay_elapsed_time()
+        self.refresh_cells({current_cell, target_cell})
+
+        if target_cell == self.goal_cell:
+            self.finish_gameplay()
+            return
+
+        self.status_message = (
+            f"Moves: {self.gameplay_state.moves}. Reach the goal with arrows/WASD or left-drag."
+        )
+
+    def finish_gameplay(self) -> None:
+        self.update_gameplay_elapsed_time()
+        self.clear_gameplay_input_state()
+        self.gameplay_state.won = True
+        self.status_message = (
+            f"Goal reached in {self.gameplay_state.moves} moves and "
+            f"{self.format_elapsed_time(self.gameplay_state.elapsed_seconds)}. "
+            "Choose Play Again or close the popup."
+        )
+        self.open_success_dialog()
+
     def clear_search_overlay(self) -> None:
         dirty_cells = set(self.open_cells)
         dirty_cells.update(self.closed_cells)
@@ -541,7 +1012,11 @@ class PathfinderApp:
             dirty_cells.add(self.start_cell)
         if self.goal_cell is not None:
             dirty_cells.add(self.goal_cell)
+        if self.gameplay_state.player_cell is not None:
+            dirty_cells.add(self.gameplay_state.player_cell)
 
+        self.clear_gameplay_input_state()
+        self.gameplay_state = GameplayState()
         self.start_cell = None
         self.goal_cell = None
         self.obstacles.clear()
@@ -605,6 +1080,8 @@ class PathfinderApp:
                     self.handle_resize(event.w, event.h)
                 elif event.type == pygame.KEYDOWN:
                     self.handle_keydown(event.key)
+                elif event.type == pygame.KEYUP:
+                    self.handle_keyup(event.key)
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     self.handle_mouse_down(event.pos, event.button)
                 elif event.type == pygame.MOUSEBUTTONUP:
@@ -612,6 +1089,7 @@ class PathfinderApp:
                 elif event.type == pygame.MOUSEMOTION:
                     self.handle_mouse_motion(event.pos, event.buttons)
 
+            self.advance_gameplay()
             self.advance_maze_generation()
             self.advance_search()
             self.draw()
@@ -640,7 +1118,250 @@ class PathfinderApp:
         self.invalidate_scaled_grid()
         self._build_buttons()
 
+    def get_modal_card_rect(self, width: int, height: int) -> pygame.Rect:
+        card_width = max(260, min(width, self.window_size[0] - 48))
+        card_height = max(180, min(height, self.window_size[1] - 48))
+        return pygame.Rect(
+            (self.window_size[0] - card_width) // 2,
+            (self.window_size[1] - card_height) // 2,
+            card_width,
+            card_height,
+        )
+
+    def get_success_dialog_layout(self) -> dict[str, pygame.Rect]:
+        card = self.get_modal_card_rect(SUCCESS_DIALOG_WIDTH, SUCCESS_DIALOG_HEIGHT)
+        content_left = card.x + 28
+        content_width = card.width - 56
+        close_icon = pygame.Rect(card.right - 50, card.y + 18, 30, 30)
+        action_y = card.bottom - 66
+        play_again_button = pygame.Rect(content_left, action_y, content_width, MODAL_BUTTON_HEIGHT)
+
+        return {
+            "card": card,
+            "close_icon": close_icon,
+            "play_again": play_again_button,
+        }
+
+    def get_grid_size_dialog_layout(self) -> dict[str, pygame.Rect]:
+        dialog_height = (
+            GRID_DIALOG_ADVANCED_HEIGHT
+            if self.modal_state.grid_size.advanced_open
+            else GRID_DIALOG_HEIGHT
+        )
+        card = self.get_modal_card_rect(GRID_DIALOG_WIDTH, dialog_height)
+        content_left = card.x + 32
+        content_width = card.width - 64
+        close_icon = pygame.Rect(card.right - 50, card.y + 18, 30, 30)
+        slider_track = pygame.Rect(
+            content_left,
+            card.y + 122,
+            content_width,
+            SLIDER_TRACK_HEIGHT,
+        )
+        advanced_toggle = pygame.Rect(content_left, card.y + 170, content_width, 36)
+        footer_y = card.bottom - 60
+        footer_width = (content_width - 16) // 2
+        cancel_button = pygame.Rect(content_left, footer_y, footer_width, MODAL_BUTTON_HEIGHT)
+        apply_button = pygame.Rect(
+            cancel_button.right + 16,
+            footer_y,
+            footer_width,
+            MODAL_BUTTON_HEIGHT,
+        )
+
+        field_y = card.y + 222
+        field_width = (content_width - 20) // 2
+        width_card = pygame.Rect(content_left, field_y, field_width, 104)
+        height_card = pygame.Rect(width_card.right + 20, field_y, field_width, 104)
+
+        def build_stepper(rect: pygame.Rect) -> tuple[pygame.Rect, pygame.Rect, pygame.Rect]:
+            minus_rect = pygame.Rect(rect.x + 12, rect.bottom - 44, 32, 32)
+            plus_rect = pygame.Rect(rect.right - 44, rect.bottom - 44, 32, 32)
+            value_rect = pygame.Rect(
+                minus_rect.right + 8,
+                minus_rect.y,
+                max(40, rect.width - 104),
+                32,
+            )
+            return minus_rect, value_rect, plus_rect
+
+        width_minus, width_value, width_plus = build_stepper(width_card)
+        height_minus, height_value, height_plus = build_stepper(height_card)
+
+        return {
+            "card": card,
+            "close_icon": close_icon,
+            "slider_track": slider_track,
+            "advanced_toggle": advanced_toggle,
+            "cancel": cancel_button,
+            "apply": apply_button,
+            "width_card": width_card,
+            "height_card": height_card,
+            "width_minus": width_minus,
+            "width_value": width_value,
+            "width_plus": width_plus,
+            "height_minus": height_minus,
+            "height_value": height_value,
+            "height_plus": height_plus,
+        }
+
+    def get_slider_thumb_rect(self, track_rect: pygame.Rect, value: int) -> pygame.Rect:
+        if MAX_GRID_DIMENSION == MIN_GRID_DIMENSION:
+            ratio = 0.0
+        else:
+            ratio = (value - MIN_GRID_DIMENSION) / (MAX_GRID_DIMENSION - MIN_GRID_DIMENSION)
+        thumb_center_x = round(track_rect.x + ratio * track_rect.width)
+        thumb_center_y = track_rect.centery
+        return pygame.Rect(
+            thumb_center_x - SLIDER_THUMB_RADIUS,
+            thumb_center_y - SLIDER_THUMB_RADIUS,
+            SLIDER_THUMB_RADIUS * 2,
+            SLIDER_THUMB_RADIUS * 2,
+        )
+
+    def update_grid_dialog_slider_from_position(self, x_position: int) -> None:
+        track_rect = self.get_grid_size_dialog_layout()["slider_track"]
+        if track_rect.width <= 0:
+            return
+        ratio = (x_position - track_rect.x) / track_rect.width
+        ratio = max(0.0, min(1.0, ratio))
+        value = round(MIN_GRID_DIMENSION + ratio * (MAX_GRID_DIMENSION - MIN_GRID_DIMENSION))
+        self.set_grid_dialog_linked_size(value)
+
+    def get_success_dialog_action_at(self, position: tuple[int, int]) -> Optional[str]:
+        layout = self.get_success_dialog_layout()
+        if layout["close_icon"].collidepoint(position):
+            return "close"
+        if layout["play_again"].collidepoint(position):
+            return "play_again"
+        return None
+
+    def get_grid_dialog_action_at(self, position: tuple[int, int]) -> Optional[str]:
+        layout = self.get_grid_size_dialog_layout()
+        if layout["close_icon"].collidepoint(position):
+            return "close"
+        if layout["cancel"].collidepoint(position):
+            return "cancel"
+        if layout["apply"].collidepoint(position):
+            return "apply"
+        if layout["advanced_toggle"].collidepoint(position):
+            return "toggle_advanced"
+        if layout["slider_track"].inflate(0, 28).collidepoint(position):
+            return "slider"
+        if not self.modal_state.grid_size.advanced_open:
+            return None
+        if layout["width_minus"].collidepoint(position):
+            return "width_minus"
+        if layout["width_plus"].collidepoint(position):
+            return "width_plus"
+        if layout["height_minus"].collidepoint(position):
+            return "height_minus"
+        if layout["height_plus"].collidepoint(position):
+            return "height_plus"
+        return None
+
+    def update_modal_hover(self, position: tuple[int, int]) -> None:
+        if self.modal_state.kind == "success":
+            self.modal_state.hovered_action = self.get_success_dialog_action_at(position)
+        elif self.modal_state.kind == "grid_size":
+            self.modal_state.hovered_action = self.get_grid_dialog_action_at(position)
+        else:
+            self.modal_state.hovered_action = None
+
+    def handle_modal_keydown(self, key: int) -> None:
+        if self.modal_state.kind == "success":
+            if key == pygame.K_ESCAPE:
+                self.dismiss_modal()
+            return
+
+        if self.modal_state.kind != "grid_size":
+            return
+
+        if key == pygame.K_ESCAPE:
+            self.close_grid_size_dialog()
+        elif key in (pygame.K_RETURN, pygame.K_KP_ENTER):
+            self.apply_grid_size_from_dialog()
+        elif key in (pygame.K_LEFT, pygame.K_DOWN):
+            self.set_grid_dialog_linked_size(self.modal_state.grid_size.slider_value - 1)
+        elif key in (pygame.K_RIGHT, pygame.K_UP):
+            self.set_grid_dialog_linked_size(self.modal_state.grid_size.slider_value + 1)
+
+    def handle_modal_mouse_down(self, position: tuple[int, int], button: int) -> None:
+        if button != 1:
+            return
+
+        if self.modal_state.kind == "success":
+            action = self.get_success_dialog_action_at(position)
+            if action == "play_again":
+                self.start_new_gameplay_round()
+            elif action == "close":
+                self.dismiss_modal()
+            return
+
+        if self.modal_state.kind != "grid_size":
+            return
+
+        action = self.get_grid_dialog_action_at(position)
+        if action in {"close", "cancel"}:
+            self.close_grid_size_dialog()
+            return
+        if action == "apply":
+            self.apply_grid_size_from_dialog()
+            return
+        if action == "toggle_advanced":
+            self.modal_state.grid_size.advanced_open = not self.modal_state.grid_size.advanced_open
+            return
+        if action == "slider":
+            self.modal_state.grid_size.dragging_slider = True
+            self.update_grid_dialog_slider_from_position(position[0])
+            return
+        if action == "width_minus":
+            self.adjust_grid_dialog_axis("width", -1)
+            return
+        if action == "width_plus":
+            self.adjust_grid_dialog_axis("width", 1)
+            return
+        if action == "height_minus":
+            self.adjust_grid_dialog_axis("height", -1)
+            return
+        if action == "height_plus":
+            self.adjust_grid_dialog_axis("height", 1)
+
+    def handle_modal_mouse_up(self, button: int) -> None:
+        if button == 1 and self.modal_state.kind == "grid_size":
+            self.modal_state.grid_size.dragging_slider = False
+
+    def handle_modal_mouse_motion(
+        self,
+        position: tuple[int, int],
+        button_states: tuple[int, int, int],
+    ) -> None:
+        self.update_modal_hover(position)
+        if (
+            self.modal_state.kind == "grid_size"
+            and self.modal_state.grid_size.dragging_slider
+            and button_states[0]
+        ):
+            self.update_grid_dialog_slider_from_position(position[0])
+        elif self.modal_state.kind == "grid_size" and not button_states[0]:
+            self.modal_state.grid_size.dragging_slider = False
+
     def handle_keydown(self, key: int) -> None:
+        if self.has_active_modal():
+            self.handle_modal_keydown(key)
+            return
+
+        if self.is_gameplay_engaged():
+            if key in (pygame.K_p, pygame.K_ESCAPE):
+                self.exit_gameplay_mode("Gameplay mode exited.")
+            elif key == pygame.K_n:
+                self.restart_gameplay()
+            else:
+                direction = self.get_gameplay_direction_for_key(key)
+                if direction is not None:
+                    self.handle_gameplay_direction_keydown(direction)
+            return
+
         if key == pygame.K_a:
             self.set_algorithm("A*")
         elif key == pygame.K_b:
@@ -677,15 +1398,56 @@ class PathfinderApp:
             self.clear_search_state(silent=True)
             self.status_message = "Search interrupted."
 
+    def handle_keyup(self, key: int) -> None:
+        if self.has_active_modal():
+            return
+        if not self.is_gameplay_engaged() or self.gameplay_hold_direction is None:
+            return
+
+        direction = self.get_gameplay_direction_for_key(key)
+        if direction == self.gameplay_hold_direction:
+            self.clear_gameplay_hold()
+
     def handle_mouse_down(self, position: tuple[int, int], button: int) -> None:
+        if self.has_active_modal():
+            self.handle_modal_mouse_down(position, button)
+            return
         if button not in (1, 3):
             return
         for ui_button in self.buttons:
             if ui_button.rect.collidepoint(position):
+                if self.is_gameplay_engaged() and ui_button.kind != "gameplay":
+                    self.status_message = (
+                        "Exit gameplay mode before using visualizer controls. "
+                        "Press N to restart, P or Esc to exit."
+                    )
+                    self.drag_button = None
+                    self.last_drag_cell = None
+                    return
                 ui_button.action()
                 self.drag_button = None
                 self.last_drag_cell = None
                 return
+        if self.is_gameplay_engaged():
+            if self.gameplay_state.pending_generation:
+                self.status_message = "Wait for the gameplay maze to finish generating."
+                self.clear_gameplay_drag()
+                return
+            if self.gameplay_state.won:
+                self.status_message = "Goal already reached. Press N to restart or P to exit."
+                self.clear_gameplay_drag()
+                return
+            if button != 1:
+                self.status_message = "Gameplay uses arrows/WASD or left-drag on the grid."
+                self.clear_gameplay_drag()
+                return
+            cell = self.screen_to_cell(position)
+            if cell is None:
+                self.clear_gameplay_drag()
+                return
+            self.clear_gameplay_hold()
+            self.gameplay_drag_cell = cell
+            return
         cell = self.screen_to_cell(position)
         if cell is None:
             return
@@ -694,6 +1456,11 @@ class PathfinderApp:
         self.apply_edit(cell, button)
 
     def handle_mouse_up(self, button: int) -> None:
+        if self.has_active_modal():
+            self.handle_modal_mouse_up(button)
+            return
+        if button == 1:
+            self.clear_gameplay_drag()
         if self.drag_button == button:
             self.drag_button = None
             self.last_drag_cell = None
@@ -701,6 +1468,18 @@ class PathfinderApp:
     def handle_mouse_motion(
         self, position: tuple[int, int], button_states: tuple[int, int, int]
     ) -> None:
+        if self.has_active_modal():
+            self.handle_modal_mouse_motion(position, button_states)
+            return
+        if self.gameplay_drag_cell is not None:
+            if not button_states[0]:
+                self.clear_gameplay_drag()
+                return
+            cell = self.screen_to_cell(position)
+            if cell is None:
+                return
+            self.advance_gameplay_drag(cell)
+            return
         if self.drag_button not in (1, 3):
             return
         pressed = button_states[0] if self.drag_button == 1 else button_states[2]
@@ -761,7 +1540,7 @@ class PathfinderApp:
         self.refresh_cells({cell})
 
     def advance_search(self) -> None:
-        if self.search_generator is None or self.search_paused:
+        if self.gameplay_state.active or self.search_generator is None or self.search_paused:
             return
 
         for _ in range(self.steps_per_frame):
@@ -792,6 +1571,8 @@ class PathfinderApp:
             if frame.done:
                 self.maze_generator = None
                 self.search_paused = False
+                if self.gameplay_state.pending_generation:
+                    self.activate_gameplay_level(auto_generated=True)
                 break
 
     def apply_frame(self, frame: SearchFrame) -> None:
@@ -1612,6 +2393,182 @@ class PathfinderApp:
     def format_cell(self, cell: Optional[Cell]) -> str:
         return str(cell) if cell is not None else "--"
 
+    def format_elapsed_time(self, elapsed_seconds: float) -> str:
+        total_seconds = max(0, int(elapsed_seconds))
+        minutes, seconds = divmod(total_seconds, 60)
+        return f"{minutes:02d}:{seconds:02d}"
+
+    def lighten_color(self, color: tuple[int, int, int], amount: int = 12) -> tuple[int, int, int]:
+        return tuple(min(255, channel + amount) for channel in color)
+
+    def draw_modal_button(
+        self,
+        rect: pygame.Rect,
+        label: str,
+        base_color: tuple[int, int, int],
+        *,
+        text_color: tuple[int, int, int] = MODAL_TEXT_COLOR,
+    ) -> None:
+        is_hovered = rect.collidepoint(pygame.mouse.get_pos())
+        fill_color = self.lighten_color(base_color) if is_hovered else base_color
+        pygame.draw.rect(self.screen, fill_color, rect, border_radius=12)
+        pygame.draw.rect(self.screen, MODAL_CARD_BORDER_COLOR, rect, 2, border_radius=12)
+        text_surface = self.text_font.render(label, True, text_color)
+        text_rect = text_surface.get_rect(center=rect.center)
+        self.screen.blit(text_surface, text_rect)
+
+    def draw_modal_close_icon(self, rect: pygame.Rect) -> None:
+        is_hovered = rect.collidepoint(pygame.mouse.get_pos())
+        fill_color = self.lighten_color(MODAL_CLOSE_COLOR, 8) if is_hovered else MODAL_CLOSE_COLOR
+        pygame.draw.rect(self.screen, fill_color, rect, border_radius=10)
+        pygame.draw.rect(self.screen, MODAL_CARD_BORDER_COLOR, rect, 2, border_radius=10)
+        text_surface = self.text_font.render("X", True, TEXT_COLOR)
+        text_rect = text_surface.get_rect(center=rect.center)
+        self.screen.blit(text_surface, text_rect)
+
+    def draw_modal_card(self, rect: pygame.Rect) -> None:
+        shadow_surface = pygame.Surface((rect.width + 20, rect.height + 20), pygame.SRCALPHA)
+        pygame.draw.rect(
+            shadow_surface,
+            (8, 14, 24, 46),
+            shadow_surface.get_rect(),
+            border_radius=22,
+        )
+        self.screen.blit(shadow_surface, (rect.x - 10, rect.y - 4))
+        pygame.draw.rect(self.screen, MODAL_CARD_COLOR, rect, border_radius=20)
+        pygame.draw.rect(self.screen, MODAL_CARD_BORDER_COLOR, rect, 2, border_radius=20)
+
+    def draw_success_dialog(self) -> None:
+        layout = self.get_success_dialog_layout()
+        rect = layout["card"]
+        content_left = rect.x + 28
+        content_width = rect.width - 56
+
+        self.draw_modal_card(rect)
+        self.draw_modal_close_icon(layout["close_icon"])
+
+        self.draw_text("Success", self.section_font, MODAL_TEXT_COLOR, (content_left, rect.y + 28))
+        self.draw_text(
+            "You reached the goal in Play mode.",
+            self.small_font,
+            MODAL_MUTED_TEXT_COLOR,
+            (content_left, rect.y + 58),
+        )
+        self.draw_text(
+            "Choose what to do next.",
+            self.small_font,
+            MODAL_MUTED_TEXT_COLOR,
+            (content_left, rect.y + 78),
+        )
+
+        highlight_box = pygame.Rect(content_left, rect.y + 108, content_width, 62)
+        pygame.draw.rect(self.screen, MODAL_INPUT_COLOR, highlight_box, border_radius=14)
+        pygame.draw.rect(self.screen, MODAL_CARD_BORDER_COLOR, highlight_box, 2, border_radius=14)
+        self.draw_text(
+            f"Time: {self.format_elapsed_time(self.modal_state.success.elapsed_seconds)}",
+            self.text_font,
+            MODAL_TEXT_COLOR,
+            (highlight_box.x + 18, highlight_box.y + 16),
+        )
+        self.draw_text(
+            f"Moves: {self.modal_state.success.moves}",
+            self.text_font,
+            MODAL_TEXT_COLOR,
+            (highlight_box.x + 18, highlight_box.y + 38),
+        )
+
+        self.draw_modal_button(layout["play_again"], "Play Again", MODAL_SUCCESS_COLOR)
+
+    def draw_grid_size_dialog(self) -> None:
+        layout = self.get_grid_size_dialog_layout()
+        rect = layout["card"]
+        content_left = rect.x + 32
+        width_value, height_value = self.get_grid_dialog_dimensions()
+
+        self.draw_modal_card(rect)
+        self.draw_modal_close_icon(layout["close_icon"])
+
+        self.draw_text("Grid Size", self.section_font, MODAL_TEXT_COLOR, (content_left, rect.y + 28))
+        self.draw_text(
+            "Use the quick slider for square grids or open advanced sizing.",
+            self.small_font,
+            MODAL_MUTED_TEXT_COLOR,
+            (content_left, rect.y + 58),
+        )
+        self.draw_text(
+            f"Range: {MIN_GRID_DIMENSION} to {MAX_GRID_DIMENSION} per dimension",
+            self.small_font,
+            MODAL_MUTED_TEXT_COLOR,
+            (content_left, rect.y + 78),
+        )
+
+        slider_label = (
+            f"Quick Square Slider: {self.modal_state.grid_size.slider_value} x "
+            f"{self.modal_state.grid_size.slider_value}"
+        )
+        self.draw_text(slider_label, self.text_font, MODAL_TEXT_COLOR, (content_left, rect.y + 102))
+
+        track_rect = layout["slider_track"]
+        pygame.draw.rect(self.screen, MODAL_INPUT_COLOR, track_rect, border_radius=5)
+        thumb_rect = self.get_slider_thumb_rect(track_rect, self.modal_state.grid_size.slider_value)
+        filled_track = pygame.Rect(
+            track_rect.x,
+            track_rect.y,
+            max(0, thumb_rect.centerx - track_rect.x),
+            track_rect.height,
+        )
+        pygame.draw.rect(self.screen, MODAL_ACCENT_COLOR, filled_track, border_radius=5)
+        pygame.draw.rect(self.screen, MODAL_CARD_BORDER_COLOR, track_rect, 2, border_radius=5)
+        pygame.draw.ellipse(self.screen, MODAL_ACCENT_COLOR, thumb_rect)
+        pygame.draw.ellipse(self.screen, MODAL_CARD_BORDER_COLOR, thumb_rect, 2)
+
+        self.draw_text(
+            f"Selected Size: {width_value} x {height_value}",
+            self.text_font,
+            MODAL_TEXT_COLOR,
+            (content_left, rect.y + 140),
+        )
+
+        advanced_label = (
+            "Hide Advanced Controls" if self.modal_state.grid_size.advanced_open else "Show Advanced Controls"
+        )
+        self.draw_modal_button(layout["advanced_toggle"], advanced_label, MODAL_INPUT_ACTIVE_COLOR)
+
+        if self.modal_state.grid_size.advanced_open:
+            for field_name, label in (("width", "Width"), ("height", "Height")):
+                field_rect = layout[f"{field_name}_card"]
+                value_rect = layout[f"{field_name}_value"]
+                minus_rect = layout[f"{field_name}_minus"]
+                plus_rect = layout[f"{field_name}_plus"]
+                value_text = self.modal_state.grid_size.width_text if field_name == "width" else self.modal_state.grid_size.height_text
+
+                pygame.draw.rect(self.screen, MODAL_INPUT_COLOR, field_rect, border_radius=16)
+                pygame.draw.rect(self.screen, MODAL_CARD_BORDER_COLOR, field_rect, 2, border_radius=16)
+                self.draw_text(label, self.text_font, MODAL_TEXT_COLOR, (field_rect.x + 14, field_rect.y + 16))
+                self.draw_modal_button(minus_rect, "-", MODAL_INPUT_ACTIVE_COLOR)
+                self.draw_modal_button(plus_rect, "+", MODAL_INPUT_ACTIVE_COLOR)
+                pygame.draw.rect(self.screen, MODAL_CARD_COLOR, value_rect, border_radius=10)
+                pygame.draw.rect(self.screen, MODAL_CARD_BORDER_COLOR, value_rect, 2, border_radius=10)
+                value_surface = self.text_font.render(value_text, True, MODAL_TEXT_COLOR)
+                value_text_rect = value_surface.get_rect(center=value_rect.center)
+                self.screen.blit(value_surface, value_text_rect)
+
+        self.draw_modal_button(layout["cancel"], "Cancel", MODAL_INPUT_ACTIVE_COLOR)
+        self.draw_modal_button(layout["apply"], "Apply", MODAL_SUCCESS_COLOR)
+
+    def draw_active_modal(self) -> None:
+        if not self.has_active_modal():
+            return
+
+        overlay_surface = pygame.Surface(self.window_size, pygame.SRCALPHA)
+        overlay_surface.fill(MODAL_OVERLAY_COLOR)
+        self.screen.blit(overlay_surface, (0, 0))
+
+        if self.modal_state.kind == "success":
+            self.draw_success_dialog()
+        elif self.modal_state.kind == "grid_size":
+            self.draw_grid_size_dialog()
+
     def draw(self) -> None:
         current_surface = pygame.display.get_surface()
         if current_surface is not None:
@@ -1619,6 +2576,7 @@ class PathfinderApp:
         self.screen.fill(BACKGROUND_COLOR)
         self.draw_grid()
         self.draw_panel()
+        self.draw_active_modal()
         pygame.display.flip()
 
     def draw_grid(self) -> None:
@@ -1694,14 +2652,26 @@ class PathfinderApp:
 
         speed_labels = {1: "Slow", 4: "Medium", 16: "Fast"}
         path_cost_text = f"{self.path_cost:.2f}" if self.path_cost is not None else "--"
-        stats = [
-            f"Search: {self.selected_algorithm}",
-            f"Maze / Edit: {self.selected_maze_algorithm} / {self.edit_mode}",
-            f"Grid / Obstacles: {self.grid_width}x{self.grid_height} / {len(self.obstacles)}",
-            f"Visited / Cost: {self.visited_count} / {path_cost_text}",
-            f"Speed: {speed_labels.get(self.steps_per_frame, self.steps_per_frame)}",
-            f"Start -> Goal: {self.format_cell(self.start_cell)} -> {self.format_cell(self.goal_cell)}",
-        ]
+        if self.is_gameplay_engaged():
+            gameplay_state = "Preparing" if self.gameplay_state.pending_generation else "Won" if self.gameplay_state.won else "Playing"
+            source_label = "Generated Maze" if self.gameplay_state.used_generated_maze else "Current Map"
+            stats = [
+                f"Mode / State: Gameplay / {gameplay_state}",
+                f"Source / Grid: {source_label} / {self.grid_width}x{self.grid_height}",
+                f"Moves / Time: {self.gameplay_state.moves} / {self.format_elapsed_time(self.gameplay_state.elapsed_seconds)}",
+                f"Player -> Goal: {self.format_cell(self.gameplay_state.player_cell)} -> {self.format_cell(self.goal_cell)}",
+                f"Obstacles: {len(self.obstacles)}",
+                "Controls: Arrows/WASD, left-drag, N restart, P/Esc exit",
+            ]
+        else:
+            stats = [
+                f"Search: {self.selected_algorithm}",
+                f"Maze / Edit: {self.selected_maze_algorithm} / {self.edit_mode}",
+                f"Grid / Obstacles: {self.grid_width}x{self.grid_height} / {len(self.obstacles)}",
+                f"Visited / Cost: {self.visited_count} / {path_cost_text}",
+                f"Speed: {speed_labels.get(self.steps_per_frame, self.steps_per_frame)}",
+                f"Start -> Goal: {self.format_cell(self.start_cell)} -> {self.format_cell(self.goal_cell)}",
+            ]
         text_y = stats_rect.y + 30
         max_stats_lines = max(0, (stats_rect.height - 32) // 14)
         for line in stats[:max_stats_lines]:
@@ -1709,6 +2679,7 @@ class PathfinderApp:
             text_y += 14
 
         legend_items = [
+            (PLAYER_COLOR, "Player"),
             (START_COLOR, "Start"),
             (GOAL_COLOR, "Goal"),
             (OBSTACLE_COLOR, "Obstacle"),
@@ -1753,6 +2724,8 @@ class PathfinderApp:
             is_active = button.value == self.edit_mode
         elif button.kind == "speed":
             is_active = button.value == self.steps_per_frame
+        elif button.kind == "gameplay":
+            is_active = self.is_gameplay_engaged()
 
         color = BUTTON_ACTIVE_COLOR if is_active else BUTTON_HOVER_COLOR if is_hovered else BUTTON_COLOR
         pygame.draw.rect(self.screen, color, button.rect, border_radius=10)
